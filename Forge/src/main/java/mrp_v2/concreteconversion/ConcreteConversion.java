@@ -2,17 +2,17 @@ package mrp_v2.concreteconversion;
 
 import mrp_v2.concreteconversion.server.Config;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(value = ConcreteConversionCommon.ID)
 @Mod.EventBusSubscriber(modid = ConcreteConversionCommon.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ConcreteConversion {
 
-    public ConcreteConversion() {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
+    public ConcreteConversion(FMLJavaModLoadingContext context) {
+        context.registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
         ConcreteConversionCommon.init();
     }
 

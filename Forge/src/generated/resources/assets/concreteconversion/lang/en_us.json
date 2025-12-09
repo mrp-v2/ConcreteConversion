@@ -3,6 +3,5 @@
   "concreteconversion.config.gui.conversionDelay": "Conversion Delay",
   "concreteconversion.config.gui.convertMud": "Convert Mud",
   "concreteconversion.config.gui.disableVanillaConversionMechanic": "Disable Vanilla Conversion Mechanic",
-  "concreteconversion.config.gui.onlyPlayerThrownItems": "Only Player Thrown Items",
-  "modmenu.guilded": "Guilded"
+  "concreteconversion.config.gui.onlyPlayerThrownItems": "Only Player Thrown Items"
 }

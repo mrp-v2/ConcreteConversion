@@ -8,7 +8,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.item.ItemTossEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 
-@EventBusSubscriber(modid = ConcreteConversionCommon.ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = ConcreteConversionCommon.ID)
 public class EventHandler {
 
     @SubscribeEvent

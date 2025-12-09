@@ -11,22 +11,21 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.packs.VanillaRecipeProvider;
 import net.minecraft.world.level.ItemLike;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
 public class DataGeneration {
 
-    public static void gatherData(GatherDataEvent event) {
+    public static void gatherData(GatherDataEvent.Client event) {
         DataGenerator gen = event.getGenerator();
         PackOutput packOutput = gen.getPackOutput();
 
-        gen.addProvider(event.includeServer(), new RecipeProvider.Runner(packOutput, event.getLookupProvider()));
-        gen.addProvider(event.includeClient(), new LanguageProvider(packOutput, "en_us"));
+        gen.addProvider(true, new RecipeProvider.Runner(packOutput, event.getLookupProvider()));
+        gen.addProvider(true, new LanguageProvider(packOutput, "en_us"));
     }
 
-    public static class RecipeProvider extends VanillaRecipeProvider implements IConditionBuilder {
+    public static class RecipeProvider extends VanillaRecipeProvider {
 
         public RecipeProvider(HolderLookup.Provider lookupProvider, RecipeOutput output) {
             super(lookupProvider, output);

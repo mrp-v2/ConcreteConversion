@@ -1,15 +1,13 @@
 plugins {
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+    id 'net.minecraftforge.gradle' version '[6.0.36,6.2)'
     id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
 base {
     archivesName = "${mod_id}-${mod_version}-forge"
 }
 mixin {
-    add(sourceSets.main, "${mod_id}.refmap.json")
-
     config("${mod_id}.mixins.json")
     config("${mod_id}.forge.mixins.json")
 }
@@ -17,6 +15,7 @@ mixin {
 minecraft {
     mappings channel: 'official', version: minecraft_version
 
+    reobf = false
     copyIdeResources = true //Calls processResources when in dev
 
     // Automatically enable forge AccessTransformers if the file exists
@@ -97,7 +96,12 @@ processResources {
     from project(":Common").sourceSets.main.resources
 }
 
-jar.finalizedBy('reobfJar')
+tasks.named('jar', Jar) {
+    manifest {
+        attributes['MixinConfigs'] = "${mod_id}.mixins.json, ${mod_id}.forge.mixins.json"
+    }
+}
+
 
 sourceSets.each {
     def dir = layout.buildDirectory.dir("resources/$it.name")
