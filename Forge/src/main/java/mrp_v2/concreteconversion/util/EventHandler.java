@@ -20,8 +20,8 @@ public class EventHandler {
     }
 
     @SubscribeEvent
-    public static void worldTickEvent(TickEvent.LevelTickEvent event) {
-        if (event.side == LogicalSide.SERVER)
-            ConcreteEvents.SERVER_LEVEL_TICK.post().handle((ServerLevel) event.level);
+    public static void worldTickEvent(TickEvent.LevelTickEvent.Pre event) {
+        if (event.side() == LogicalSide.SERVER)
+            ConcreteEvents.SERVER_LEVEL_TICK.post().handle((ServerLevel) event.level());
     }
 }

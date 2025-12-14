@@ -1,7 +1,7 @@
 plugins {
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.170'
+    id 'net.neoforged.gradle.userdev' version '7.1.11'
     id 'java-library'
 }
 base {
@@ -31,7 +31,7 @@ runs {
     }
 
     clientData {
-        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', project(":Common").file('src/main/resources/').getAbsolutePath()
+        arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', project(":Common").file('src/main/resources/').getAbsolutePath()
     }
 }
 
