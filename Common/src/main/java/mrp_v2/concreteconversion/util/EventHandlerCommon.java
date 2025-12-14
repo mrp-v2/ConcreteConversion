@@ -22,7 +22,7 @@ public class EventHandlerCommon {
     private static int lastCheck = 0;
 
     public static boolean itemTossEvent(ItemEntity entity, Player player) {
-        if (!entity.getCommandSenderWorld().isClientSide())
+        if (!entity.level().isClientSide())
             addPlayerThrownItemEntity(entity);
         return true;
     }

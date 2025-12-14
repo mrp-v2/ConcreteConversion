@@ -5,7 +5,7 @@ import mrp_v2.concreteconversion.event.ConcreteEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.listener.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 
@@ -13,9 +13,10 @@ import net.minecraftforge.fml.common.Mod;
 public class EventHandler {
 
     @SubscribeEvent
-    public static void itemTossEvent(ItemTossEvent event) {
+    public static boolean itemTossEvent(ItemTossEvent event) {
         if (!ConcreteEvents.ITEM_TOSS.post().handle(event.getEntity(), event.getPlayer()))
-            event.setCanceled(true);
+            return true;
+        return false;
     }
 
     @SubscribeEvent
