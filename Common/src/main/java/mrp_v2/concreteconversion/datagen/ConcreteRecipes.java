@@ -2,7 +2,7 @@ package mrp_v2.concreteconversion.datagen;
 
 import mrp_v2.concreteconversion.ConcreteConversionCommon;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;

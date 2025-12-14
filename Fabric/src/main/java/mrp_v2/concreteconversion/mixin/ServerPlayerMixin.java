@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
 
-    @Redirect(method = "drop(Z)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;"))
+    @Redirect(method = "drop(Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerPlayer;drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;"))
     public ItemEntity drop (ServerPlayer player, ItemStack stack, boolean throwRandomly, boolean retainOwnership) {
         ItemEntity entity = player.drop(stack, throwRandomly, retainOwnership);
         if (entity != null)

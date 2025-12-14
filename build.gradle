@@ -7,7 +7,7 @@ def forge_loader_version = "${forge_version.takeWhile { it != '.' }}"
 def minecraft_x_version = "${minecraft_version}"
 
 if (minecraft_x_version.count('.') >= 2) {
-    minecraft_x_version = minecraft_version.substring(0, minecraft_version.length() - 1) + "x"
+    minecraft_x_version = minecraft_version.substring(0, minecraft_version.length() - 2) + "x"
 } else {
     minecraft_x_version = minecraftVersion + '.x'
 }
