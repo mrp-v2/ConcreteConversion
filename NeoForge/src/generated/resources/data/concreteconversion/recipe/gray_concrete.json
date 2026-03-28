@@ -6,7 +6,6 @@
   "group": "cooking_concrete",
   "ingredient": "minecraft:gray_concrete",
   "result": {
-    "count": 1,
     "id": "minecraft:gray_concrete_powder"
   }
 }

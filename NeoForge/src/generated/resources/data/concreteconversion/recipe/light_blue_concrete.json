@@ -6,7 +6,6 @@
   "group": "cooking_concrete",
   "ingredient": "minecraft:light_blue_concrete",
   "result": {
-    "count": 1,
     "id": "minecraft:light_blue_concrete_powder"
   }
 }

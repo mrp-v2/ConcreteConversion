@@ -3,7 +3,7 @@ package mrp_v2.concreteconversion.datagen;
 import mrp_v2.concreteconversion.ConcreteConversionCommon;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
@@ -23,7 +23,7 @@ public class DataGeneration implements DataGeneratorEntrypoint {
 
     public static class RecipeProvider extends FabricRecipeProvider {
 
-        public RecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        public RecipeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output, registriesFuture);
         }
 
@@ -45,7 +45,7 @@ public class DataGeneration implements DataGeneratorEntrypoint {
 
     public static class LanguageProvider extends FabricLanguageProvider {
 
-        public LanguageProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        public LanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output, "en_us", registriesFuture);
         }
 
