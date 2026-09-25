@@ -5,7 +5,8 @@ import mrp_v2.concreteconversion.ConcreteConversionCommon;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -21,8 +22,8 @@ public class EventHandlerCommon {
     private static final Map<ItemEntity, Integer> entities = Maps.newHashMap();
     private static int lastCheck = 0;
 
-    public static boolean itemTossEvent(ItemEntity entity, Player player) {
-        if (!entity.level().isClientSide())
+    public static boolean itemTossEvent(ItemEntity entity, LivingEntity livingEntity) {
+        if (!entity.level().isClientSide() && livingEntity instanceof Player)
             addPlayerThrownItemEntity(entity);
         return true;
     }
@@ -41,14 +42,14 @@ public class EventHandlerCommon {
     }
 
     private static boolean isValidDirt(ItemEntity entity) {
-        return Block.byItem(entity.getItem().getItem()).defaultBlockState().is(BlockTags.CONVERTABLE_TO_MUD);
+        return Block.byItem(entity.getItem().getItem()).defaultBlockState().is(BlockTags.CONVERTIBLE_TO_MUD);
     }
 
     private static void itemEntityCheck(ServerLevel level) {
         if ((ConcreteConversionCommon.CONFIG.getConversionCheckDelay() <= ++lastCheck)) {
             lastCheck = 0;
             if (!ConcreteConversionCommon.CONFIG.getOnlyPlayerThrownItems())
-                for (Entity entity : level.getEntities(EntityType.ITEM, (entity) -> true))
+                for (Entity entity : level.getEntities(EntityTypes.ITEM, (entity) -> true))
                     entities.putIfAbsent((ItemEntity) entity, 0);
 
             Iterator<ItemEntity> iterator = entities.keySet().iterator();

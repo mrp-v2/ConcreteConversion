@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "concreteconversion:yellow_concrete"
+        "recipes": "concreteconversion:yellow_concrete"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

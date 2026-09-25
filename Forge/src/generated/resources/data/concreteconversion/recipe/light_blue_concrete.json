@@ -2,7 +2,6 @@
   "type": "minecraft:smelting",
   "category": "blocks",
   "cookingtime": 200,
-  "experience": 0.0,
   "group": "cooking_concrete",
   "ingredient": "minecraft:light_blue_concrete",
   "result": {

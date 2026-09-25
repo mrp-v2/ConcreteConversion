@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "concreteconversion:black_concrete"
+        "recipes": "concreteconversion:black_concrete"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

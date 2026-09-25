@@ -12,7 +12,7 @@ base {
 
 minecraft {
     mappings channel: 'official', version: minecraft_version
-    
+
     // Automatically enable forge AccessTransformers if the file exists
     // This location is hardcoded in Forge and can not be changed.
     // https://github.com/MinecraftForge/MinecraftForge/blob/be1698bb1554f9c8fa2f58e32b9ab70bc4385e60/fmlloader/src/main/java/net/minecraftforge/fml/loading/moddiscovery/ModFile.java#L123
@@ -22,6 +22,8 @@ minecraft {
         configureEach {
             workingDir = layout.projectDirectory.dir('run')
             systemProperty 'eventbus.api.strictRuntimeChecks', 'true'
+            args "-mixin.config=${mod_id}.mixins.json"
+            args "-mixin.config=${mod_id}.forge.mixins.json"
         }
         register('client')
 
@@ -31,12 +33,12 @@ minecraft {
 
         register('data') {
             args '--mod', "${mod_id}", '--all', '--output', file('src/generated/resources/'), '--existing', project(":Common").file('src/main/resources/')
-            mods {
+            /*mods {
                 modServerRun {
                     source sourceSets.main
                     source project(":Common").sourceSets.main
                 }
-            }
+            }*/
         }
     }
 }

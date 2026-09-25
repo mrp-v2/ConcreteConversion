@@ -9,11 +9,11 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(FallingBlockEntity.class)
 public class FallingBlockEntityMixin {
 
-    @ModifyVariable(method = "tick", at = @At(value = "STORE", ordinal = 0))
-    private boolean tick(boolean flag) {
+    @ModifyVariable(method = "tick", at = @At(value = "STORE", ordinal = 0), name = "isConcrete")
+    private boolean tick(boolean isConcrete) {
         if (ConcreteConversionCommon.CONFIG.getDisableVanillaConversionMechanic()) {
             return false;
         }
-        return flag;
+        return isConcrete;
     }
 }

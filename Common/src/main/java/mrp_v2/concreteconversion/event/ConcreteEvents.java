@@ -1,14 +1,15 @@
 package mrp_v2.concreteconversion.event;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 
 public class ConcreteEvents {
 
-    public static final ConcreteEvent<ItemToss> ITEM_TOSS = new ConcreteEvent<>(listeners -> (entity, player) -> {
+    public static final ConcreteEvent<ItemToss> ITEM_TOSS = new ConcreteEvent<>(listeners -> (entity, livingEntity) -> {
         for(var listener : listeners)
-            if(listener.handle(entity, player))
+            if(listener.handle(entity, livingEntity))
                 return true;
         return false;
     });
@@ -20,7 +21,7 @@ public class ConcreteEvents {
 
     public interface ItemToss extends IConcreteEvent {
 
-        boolean handle(ItemEntity entity, Player player);
+        boolean handle(ItemEntity entity, LivingEntity livingEntity);
     }
 
     public interface ServerLevelTick extends IConcreteEvent {

@@ -6,8 +6,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.world.item.crafting.Recipe;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -28,17 +31,17 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         }
 
         @Override
-        public net.minecraft.data.recipes.RecipeProvider createRecipeProvider(HolderLookup.Provider registriesFuture, RecipeOutput exporter) {
-            return new net.minecraft.data.recipes.RecipeProvider(registriesFuture, exporter) {
+        public net.minecraft.data.recipes.@NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider registriesFuture, @NonNull BootstrapContext<Recipe<?>> recipes, @NonNull BootstrapContext<Advancement> advancements) {
+            return new net.minecraft.data.recipes.RecipeProvider(recipes, advancements) {
                 @Override
                 public void buildRecipes() {
-                    ConcreteRecipes.generatePowderFromConcreteRecipes(exporter, this::has);
+                    ConcreteRecipes.generatePowderFromConcreteRecipes(this.output, this::has);
                 }
             };
         }
 
         @Override
-        public String getName() {
+        public @NonNull String getName() {
             return ConcreteConversionCommon.ID + " recipes";
         }
     }
@@ -50,7 +53,7 @@ public class DataGeneration implements DataGeneratorEntrypoint {
         }
 
         @Override
-        public void generateTranslations(HolderLookup.Provider registryLookup, TranslationBuilder builder) {
+        public void generateTranslations(HolderLookup.@NonNull Provider registryLookup, TranslationBuilder builder) {
             ConcreteLanguage.english(builder::add);
         }
     }
