@@ -12,7 +12,7 @@ import net.neoforged.fml.event.config.ModConfigEvent;
 public class ConcreteConversion {
 
     public ConcreteConversion(ModContainer mod, IEventBus modBus) {
-        mod.registerConfig(ModConfig.Type.SERVER, Config.serverSpec);
+        mod.registerConfig(ModConfig.Type.SYNCED, Config.serverSpec);
         modBus.addListener(DataGeneration::gatherData);
         modBus.addListener(this::onLoad);
         modBus.addListener(this::onFileChange);
